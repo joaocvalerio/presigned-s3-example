@@ -32,6 +32,12 @@ module Challenge
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
+    config.eager_load_paths += [
+      "#{config.root}/lib/",
+      "#{config.root}/app/serializers/",
+      "#{config.root}/app/models/auxiliar/"
+    ]
+
     # CORS for HTTP
     config.middleware.insert_before 0, Rack::Cors do
       allow do

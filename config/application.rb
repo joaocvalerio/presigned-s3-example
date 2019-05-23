@@ -36,7 +36,8 @@ module Challenge
       "#{config.root}/app/serializers/",
       "#{config.root}/app/models/auxiliar/",
       "#{config.root}/app/services/*",
-      "#{config.root}/lib/*"
+      "#{config.root}/lib/web_token.rb",
+      "#{config.root}/lib/aws/presigned_url_engine.rb"
     ]
 
     config.autoload_paths += Dir["#{config.root}/lib/**/"]

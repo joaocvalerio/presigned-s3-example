@@ -36,14 +36,9 @@ module Challenge
       "#{config.root}/app/serializers/",
       "#{config.root}/app/models/auxiliar/",
       "#{config.root}/app/services/*"
-      # "#{config.root}/lib/web_token.rb",
-      # "#{config.root}/lib/aws/presigned_url_engine.rb"
     ]
 
     config.eager_load_paths << Rails.root.join('lib')
-
-    onfig.enable_dependency_loading = true
-    config.autoload_paths << Rails.root.join('lib')
 
     # CORS for HTTP
     config.middleware.insert_before 0, Rack::Cors do

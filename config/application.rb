@@ -35,7 +35,8 @@ module Challenge
     config.eager_load_paths += [
       "#{config.root}/app/serializers/",
       "#{config.root}/app/models/auxiliar/",
-      "#{config.root}/app/services/*"
+      "#{config.root}/app/services/*",
+      "#{config.root}/lib/*"
     ]
 
     config.autoload_paths += Dir["#{config.root}/lib/**/"]

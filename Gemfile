@@ -5,8 +5,6 @@ ruby '2.4.3'
 
 gem 'rails', '~> 5.2.3'
 
-gem 'sqlite3'
-
 gem 'puma', '~> 3.11'
 
 gem 'active_model_serializers'
@@ -22,6 +20,8 @@ gem 'jwt'
 gem 'aws-sdk', '~> 3'
 
 gem 'pundit'
+
+gem 'pg'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
@@ -50,6 +50,7 @@ group :development, :test do
   gem 'rubocop-rspec'
   gem 'faker'
   gem 'rack-test'
+  gem 'sqlite3', '~> 1.3', '>= 1.3.6'
 end
 
 group :development do

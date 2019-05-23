@@ -1,38 +1,51 @@
 module Devise
   module Strategies
     class JWTAuthenticatable < Base
+      def valid?
+        params_token || header_token
+      end
+
       def authenticate!
-        token = get_token
-        return fail(:invalid) unless token.present?
+        return fail! unless valid?
 
-        payload = get_payload
-        return fail(:invalid) if payload == :expired
-
-        resource = mapping.to.find(payload['user_id'])
-        return fail(:not_found_in_database) unless resource
-
-        success! resource
+        success! find_record
       end
 
       private
 
-      def get_payload
-        JWT.decode(
-          get_token,
-          Rails.application.secrets.secret_key_base,
-          true,
-          algorithm: 'HS256'
-        ).first
-      rescue JWT::ExpiredSignature
-        :expired
+      def params_token
+        @token = params[:token]
+
+        claims
       end
 
-      def get_token
-        auth_header.present? && auth_header.split(' ').last
+      def header_token
+        return nil unless authorization = request.headers['Authorization']
+
+        strategy, @token = authorization.split(' ')
+
+        return nil unless strategy && strategy.downcase == 'bearer'
+
+        claims
       end
 
-      def auth_header
-        request.headers['Authorization']
+      def claims
+        jwt_value ||= WebToken.decode(@token) rescue nil
+
+        if jwt_value
+          @user_id = jwt_value['user_id']
+        end
+      end
+
+      def find_record
+       record_model.send('find_by_id', @user_id)
+      end
+
+      def record_model
+        case scope
+        when :user
+          User
+        end
       end
     end
   end

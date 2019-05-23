@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   namespace :v1, as: nil do
     get '/' => 'status#ping'
 
@@ -9,6 +8,8 @@ Rails.application.routes.draw do
         sessions: 'v1/users/sessions',
         passwords: 'v1/users/passwords',
       }
+
+    resources :users, only: [:show, :update]
+    resources :pictures, only: [:create]
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

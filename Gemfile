@@ -49,6 +49,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'rubocop-rspec'
   gem 'faker'
+  gem 'rack-test'
 end
 
 group :development do

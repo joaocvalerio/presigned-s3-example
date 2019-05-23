@@ -33,12 +33,12 @@ module Challenge
     config.api_only = true
 
     config.eager_load_paths += [
-      "#{config.root}/lib/",
-      "#{config.root}/lib/aws",
       "#{config.root}/app/serializers/",
       "#{config.root}/app/models/auxiliar/",
       "#{config.root}/app/services/*"
     ]
+
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
     # CORS for HTTP
     config.middleware.insert_before 0, Rack::Cors do

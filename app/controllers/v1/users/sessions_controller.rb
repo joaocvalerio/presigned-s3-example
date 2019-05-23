@@ -8,6 +8,6 @@ class V1::Users::SessionsController < Devise::SessionsController
 
     token = WebToken.encode(resource)
 
-    json_response token: token
+    json_response Jwt.new(token: token)
   end
 end

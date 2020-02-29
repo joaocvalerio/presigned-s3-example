@@ -5,7 +5,7 @@ ruby '2.4.3'
 
 gem 'rails', '~> 5.2.3'
 
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 
 gem 'active_model_serializers'
 
